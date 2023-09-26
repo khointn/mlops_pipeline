@@ -1,0 +1,19 @@
+version: "3"
+services:
+  training_pipeline:
+    build: ./
+    tty: true
+    environment:
+      AIRFLOW_HOME: '/training-pipeline'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    ports:
+      - "5000:5000"     #CHANGE HERE
+      - "8080:8080"
+    volumes:
+      - ./:/training_pipeline
+    networks:
+      - training-pipeline
+networks:
+  training-pipeline:
+    name: training-pipeline
+  volumes:

@@ -1,0 +1,17 @@
+name: My Project
+
+docker_env:
+  image: mlflow-pipeline
+
+entry_points:
+  main:
+    parameters:
+      baseline_sample: {type: float, default: 0.1}
+      data_path: {type: string, default: ''}
+      task: {type: string, default: ''}
+      target: {type: string, default: ''}
+    command: "python src/main.py --baseline_sample {baseline_sample} --data_path {data_path} --task {task} --target {target}"
+  validate:
+    parameters:
+      data_path: path
+    command: "python validate.py {data_path}"
